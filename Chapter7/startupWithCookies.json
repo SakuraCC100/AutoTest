@@ -1,0 +1,55 @@
+[
+  {
+    "description":"这是一个会返回 cookies 信息的 get 请求",
+    "request":{
+      "uri":"/getcookies",
+      "method":"get"
+    },
+    "response":{
+      "cookies":{
+        "login":"true"
+      },
+      "headers":{
+        "Content-Type":"text/html;charset=gbk"
+      },
+      "text":"恭喜你成功获得 cookies 信息"
+    }
+  },
+  {
+    "description":"这是一个带 cookies 信息的 GET 请求",
+    "request":{
+      "uri":"/get/with/cookies",
+      "method":"get",
+      "cookies":{
+        "login":"true"
+      }
+    },
+    "response":{
+      "headers":{
+        "Content-Type":"text/html;charset=gbk"
+      },
+      "text":"这是一个需要携带 cookies 信息才能访问的 get 请求"
+    }
+  },
+  {
+    "description":"这是一个带 cookies 信息的 POST 请求",
+    "request":{
+      "uri":"/post/with/cookies",
+      "method":"post",
+      "cookies":{
+        "login":"true"
+      },
+      "forms":{
+        "name":"Jack",
+        "age":"18"
+      }
+    },
+    "response":{
+      "status":200,
+      "json":{
+        "jack":"success",
+        "status": "1"
+      }
+    }
+  }
+]
