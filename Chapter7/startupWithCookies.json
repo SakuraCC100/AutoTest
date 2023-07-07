@@ -39,7 +39,7 @@
       "cookies":{
         "login":"true"
       },
-      "forms":{
+      "json":{
         "name":"Jack",
         "age":"18"
       }

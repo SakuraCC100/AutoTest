@@ -14,7 +14,7 @@
     "request":{
       "uri":"/postwithparam",
       "method":"post",
-      "forms":{
+      "json":{
         "name":"Jack",
         "sex":"male"
       }
