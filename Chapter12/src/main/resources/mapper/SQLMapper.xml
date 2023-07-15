@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sakura.model">
+    <!--获取登录接口 case-->
+    <select id="loginCase" parameterType="Integer" resultType="com.sakura.model.LoginCase">
+        select * from login_Case where id = #{id}
+    </select>
+
+    <!--添加用户接口 case-->
+    <select id="addUserCase" parameterType="Integer" resultType="com.sakura.model.AddUserCase">
+        select * from add_User_Case where id = #{id}
+    </select>
+
+    <!--获取用户信息 case-->
+    <select id="getUserInfoCase" parameterType="Integer" resultType="com.sakura.model.GetUserInfoCase">
+        select * from get_User_Info_Case where id = #{id}
+    </select>
+
+    <!--获取用户列表 case-->
+    <select id="getUserListCase" parameterType="Integer" resultType="com.sakura.model.GetUserListCase">
+        select * from get_User_List_Case where id = #{id}
+    </select>
+
+    <!--更新/删除用户 case-->
+    <select id="updateUserInfoCase" parameterType="Integer" resultType="com.sakura.model.UpdateUserInfoCase">
+        select * from update_User_Info_Case where id = #{id};
+    </select>
+
+    <!--添加用户信息-->
+    <select id="addUser" parameterType="com.sakura.model.AddUserCase" resultType="com.sakura.model.User">
+        select * from user where
+        userName = #{userName}
+        and password=#{password}
+        and sex=#{sex}
+        and age=#{age}
+        and permission=#{permission}
+        and isDelete=#{isDelete}
+    </select>
+
+    <!--获取用户信息-->
+    <select id="getUserInfo" parameterType="com.sakura.model.GetUserInfoCase" resultType="com.sakura.model.User">
+        select * from user where id=#{userId};
+    </select>
+
+    <!--获取用户列表-->
+    <select id="getUserList" parameterType="com.sakura.model.GetUserListCase" resultType="com.sakura.model.User">
+        select * from user
+        <trim prefix="WHERE" prefixOverrides="and">
+            <if test="null != userName and '' != userName">
+              AND userName=#{userName}
+            </if>
+            <if test="null != sex and '' != sex">
+                AND sex=#{sex}
+            </if>
+            <if test="null != age and '' != age">
+                AND age=#{age}
+            </if>
+        </trim>
+        ;
+    </select>
+
+    <!--获取更新之后的数据-->
+    <select id="getUpdateUserInfo" parameterType="com.sakura.model.UpdateUserInfoCase" resultType="com.sakura.model.User">
+        select * from user
+        <trim prefix="WHERE" prefixOverrides="and">
+            <if test="null != userName and '' != userName">
+                AND userName=#{userName}
+            </if>
+            <if test="null != sex and '' != sex">
+                AND sex=#{sex}
+            </if>
+            <if test="null != age and '' != age">
+                AND age=#{age}
+            </if>
+            <if test="null != permission and '' != permission">
+                AND permission=#{permission}
+            </if>
+            <if test="null != isDelete and '' != isDelete">
+                AND isDelete=#{isDelete}
+            </if>
+        </trim>
+        and id = #(userId)
+    </select>
+</mapper>
