@@ -58,7 +58,7 @@ public class LoginTest {
         // 发送请求
         String result = getResult(loginCase);
         // 验证结果
-        Assert.assertEquals("",result);
+        Assert.assertEquals(loginCase.getExpected(),result);
     }
 
     private String getResult(LoginCase loginCase) throws IOException {
