@@ -6,11 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +23,7 @@ public class UserManager {
     private SqlSessionTemplate template;
 
     @ApiOperation(value = "登录接口",httpMethod = "POST")
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @PostMapping(value = "/login")
     public Boolean login(HttpServletResponse response, @RequestBody User user){
         int i = template.selectOne("login",user);
         Cookie cookie = new Cookie("login","true");
@@ -41,10 +37,12 @@ public class UserManager {
     }
 
     @ApiOperation(value = "添加用户接口",httpMethod = "POST")
-    @RequestMapping(value = "/addUser",method = RequestMethod.POST)
+    @PostMapping(value = "/addUser")
     public boolean addUser(HttpServletRequest request, @RequestBody User user){
         Boolean x = verifyCookies(request);
+
         int result=0;
+
         if(x!=null){
             result = template.insert("addUser",user);
         }
@@ -56,7 +54,7 @@ public class UserManager {
     }
 
     @ApiOperation(value = "获取用户（列表）信息接口",httpMethod = "POST")
-    @RequestMapping(value = "/getUserInfo",method = RequestMethod.POST)
+    @PostMapping(value = "/getUserInfo")
     public List<User> getUserInfo(HttpServletRequest request,@RequestBody User user){
         Boolean x = verifyCookies(request);
         if(x==true){
@@ -69,7 +67,7 @@ public class UserManager {
     }
 
     @ApiOperation(value = "更新/删除用户接口",httpMethod = "POST")
-    @RequestMapping(value = "/updateUserInfo",method = RequestMethod.POST)
+    @PostMapping(value = "/updateUserInfo")
     public int updateUser(HttpServletRequest request,@RequestBody User user){
         Boolean x = verifyCookies(request);
         int i = 0;

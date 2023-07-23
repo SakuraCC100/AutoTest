@@ -57,7 +57,6 @@
                 AND age=#{age}
             </if>
         </trim>
-        ;
     </select>
 
     <!--获取更新之后的数据-->
@@ -80,6 +79,6 @@
                 AND isDelete=#{isDelete}
             </if>
         </trim>
-        and id = #(userId)
+        and id = #{userId}
     </select>
 </mapper>
